@@ -3,7 +3,6 @@ version: '3.8'
 services:
   backend:
     build: ./backend
-    # Name of the image docker-compose should build or pull
     image: ${DOCKER_USERNAME:-local}/mern-backend:latest
     container_name: mern-backend
     ports:
