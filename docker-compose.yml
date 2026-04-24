@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    # Name of the image docker-compose should build or pull
+    image: ${DOCKER_USERNAME:-local}/mern-backend:latest
+    container_name: mern-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    image: ${DOCKER_USERNAME:-local}/mern-frontend:latest
+    container_name: mern-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
