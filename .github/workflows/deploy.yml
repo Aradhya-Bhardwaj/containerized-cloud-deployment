@@ -19,20 +19,20 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and Push Backend Image
-  uses: docker/build-push-action@v4
-  with:
-    context: ./backend
-    push: true
-    no-cache: true
-    tags: ${{ secrets.DOCKER_USERNAME }}/mern-backend:latest
+        uses: docker/build-push-action@v4
+        with:
+          context: ./backend
+          push: true
+          no-cache: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/mern-backend:latest
 
       - name: Build and Push Frontend Image
-  uses: docker/build-push-action@v4
-  with:
-    context: ./frontend
-    push: true
-    no-cache: true
-    tags: ${{ secrets.DOCKER_USERNAME }}/mern-frontend:latest
+        uses: docker/build-push-action@v4
+        with:
+          context: ./frontend
+          push: true
+          no-cache: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/mern-frontend:latest
 
   deploy:
     needs: build-and-push
